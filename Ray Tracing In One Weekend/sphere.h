@@ -1,8 +1,8 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
+#include "rtweekend.h"
 #include "hittable.h"
-#include "vec3.h"
 
 class sphere : public hittable 
 {
@@ -18,16 +18,16 @@ public:
 
         auto discriminant = h * h - a * c;
         if (discriminant < 0)
-            return false;
+            return false; // No hit occurred
 
         auto sqrtd = sqrt(discriminant);
 
-        // Find the nearest root that lies in the acceptable range.
+        // Find the nearest root(hit) that lies in the acceptable range.
         auto root = (h - sqrtd) / a;
         if (root <= ray_tmin || ray_tmax <= root) {
             root = (h + sqrtd) / a;
             if (root <= ray_tmin || ray_tmax <= root)
-                return false;
+                return false; // Hit is not within accepted range
         }
 
         rec.t = root;

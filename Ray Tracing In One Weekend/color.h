@@ -1,9 +1,8 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include "vec3.h"
-
-#include <iostream>
+#include "rtweekend.h"
+#include "vec3.h" // Does not compile without this, despite being in common inclusions file
 
 using color = vec3;
 
