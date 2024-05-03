@@ -26,9 +26,9 @@ public:
                 color pixel_color = ray_color(r, world);
                 write_color(std::cout, pixel_color);
             }
-    }
+        }
 
-    std::clog << "\rDone.                                           \n";
+        std::clog << "\rDone.                                           \n";
     }
 private:
     int image_height;
@@ -39,7 +39,8 @@ private:
 
     void initialize()
     {
-        image_height = int(image_width / aspect_ratio); // Calculate image height; ensure it's at least 1
+        // Calculate image height; ensure it's at least 1
+        image_height = int(image_width / aspect_ratio); 
         image_height = (image_height < 1) ? 1 : image_height;
 
         center = point3(0, 0, 0);
@@ -54,12 +55,12 @@ private:
         auto viewport_v = vec3(0, -viewport_height, 0);
 
         // Calculate the horizontal and vertical delta vectors from pixel to pixel.
-        auto pixel_delta_u = viewport_u / image_width;
-        auto pixel_delta_v = viewport_v / image_height;
+        pixel_delta_u = viewport_u / image_width;
+        pixel_delta_v = viewport_v / image_height;
 
         // Calculate the location of the upper left pixel.
         auto viewport_upper_left = center - vec3(0, 0, focal_length) - viewport_u / 2 - viewport_v / 2;
-        auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
+        pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
     }
 
     color ray_color(const ray& r, const hittable& world) const
