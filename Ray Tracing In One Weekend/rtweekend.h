@@ -7,7 +7,6 @@
 #include <limits>
 #include <memory>
 
-
 // C++ std Usings
 using std::make_shared;
 using std::shared_ptr;
@@ -36,10 +35,10 @@ inline double random_double(double min, double max)
 }
 
 // Common Headers
-
-#include "color.h"
-#include "ray.h"
 #include "vec3.h"
 #include "interval.h"
+#include "color.h"
+#include "ray.h"
+
 
 #endif
