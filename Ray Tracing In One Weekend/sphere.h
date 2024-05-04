@@ -16,7 +16,7 @@ public:
         auto h = dot(r.direction(), oc);
         auto c = oc.length_squared() - radius * radius;
 
-        auto discriminant = h * h - a * c;
+        auto discriminant = h * h - a * c; // b = 2h
         if (discriminant < 0)
             return false; // No hit occurred
 
