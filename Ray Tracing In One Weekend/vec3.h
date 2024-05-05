@@ -140,4 +140,13 @@ inline vec3 reflect(const vec3& v, const vec3& n)
     return v - 2 * dot(v, n) * n;
 }
 
+// the ray, the normal, eta / eta prime (the refractive indices)
+inline vec3 refract(const vec3& uv, const vec3& n, double etai_over_etat)
+{
+    auto cos_theta = fmin(dot(-uv, n), 1.0); // Angle between ray and surface normal
+    vec3 r_out_perp = etai_over_etat * (uv + cos_theta * n); // normal-perpendicular component of resulting ray
+    vec3 r_out_parallel = -sqrt(fabs(1.0 - r_out_perp.length_squared())) * n; // normal-parallel component of resulting ray (negative bc it's on other side)
+    return r_out_perp + r_out_parallel; // put the components together
+}
+
 #endif
