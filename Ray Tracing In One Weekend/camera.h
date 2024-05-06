@@ -32,11 +32,11 @@ public:
             std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
             for (int i = 0; i < image_width; i++){
                 color pixel_color(0, 0, 0);
-                for (int sample = 0; sample < samples_per_pixel; sample++){
+                for (int sample = 0; sample < samples_per_pixel; sample++){ // Cast multiple random rays for a summation of each pixel.
                     ray r = get_ray(i, j);
                     pixel_color += ray_color(r, max_depth, world);
                 }
-                write_color(std::cout, pixel_samples_scale * pixel_color);
+                write_color(std::cout, pixel_samples_scale * pixel_color); // Record the color to output
             }
         }
 
